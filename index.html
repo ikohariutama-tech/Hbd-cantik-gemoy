@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Eka Sayang ❤️</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh;color:#fff;
+  background:radial-gradient(circle at top,#ffabc2 0,#8e315b 40%,#210c25 100%);
+  overflow-x:hidden
+}
+#stars,.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.container{position:relative;z-index:2;max-width:720px;margin:auto;padding:28px 18px 60px;text-align:center}
+.card{
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);
+  backdrop-filter:blur(14px);border-radius:28px;padding:28px 20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.28)
+}
+.intro{
+  position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,#b93d73,#270d2a 75%);
+  transition:opacity .8s,visibility .8s
+}
+.intro.hide{opacity:0;visibility:hidden}
+.envelope{font-size:88px;animation:floatEnvelope 1.6s ease-in-out infinite}
+@keyframes floatEnvelope{50%{transform:translateY(-10px) rotate(2deg)}}
+.intro h2{margin:8px 0;font-size:29px}
+.intro p{opacity:.85}
+.open{
+  border:0;border-radius:999px;padding:15px 25px;font-size:17px;font-weight:900;
+  color:#8e315b;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.3);cursor:pointer
+}
+.big-heart{
+  width:78px;height:78px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;
+  font-size:50px;line-height:1;color:#fff;
+  text-shadow:0 0 18px rgba(255,255,255,.8),0 0 35px rgba(255,70,140,.85);
+  animation:heartbeat 1.15s ease-in-out infinite
+}
+@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.22)}28%{transform:scale(1)}42%{transform:scale(1.16)}56%{transform:scale(1)}}
+h1{font-size:clamp(34px,9vw,64px);margin:8px 0 4px}
+.subtitle{font-size:18px;opacity:.9}.date{font-weight:800;font-size:22px;margin:15px 0}
+.photo{
+  width:min(82vw,360px);height:min(82vw,360px);object-fit:cover;border-radius:50%;
+  border:7px solid rgba(255,255,255,.78);box-shadow:0 12px 35px rgba(0,0,0,.32);margin:22px auto;display:block
+}
+button,.music{
+  border:0;border-radius:999px;padding:14px 22px;font-size:16px;font-weight:800;cursor:pointer;
+  background:#fff;color:#8e315b;text-decoration:none;display:inline-block;margin:7px;
+  box-shadow:0 8px 20px rgba(0,0,0,.2)
+}
+.message{
+  display:none;text-align:left;line-height:1.75;margin-top:24px;padding:22px;
+  border-radius:22px;background:rgba(0,0,0,.18)
+}
+.message.show{display:block;animation:pop .5s ease}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.highlight{font-size:25px;font-weight:900;text-align:center}
+.spotify-box{margin:18px auto 4px;max-width:520px;text-align:left;background:rgba(0,0,0,.18);border-radius:20px;padding:14px}
+.spotify-title{font-weight:800;margin:0 0 10px 4px}
+.spotify-box iframe{display:block;border-radius:14px}
+.spotify-note{font-size:12px;opacity:.72;text-align:center;margin-top:8px}
+.small{font-size:13px;opacity:.75;margin-top:25px}
+.heart{
+  position:absolute;bottom:-40px;font-size:22px;animation:float 7s linear infinite;opacity:.75
+}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.love-burst{
+  position:fixed;z-index:60;pointer-events:none;font-size:24px;
+  animation:burst 1.2s ease-out forwards
+}
+@keyframes burst{
+  0%{transform:translate(-50%,-50%) scale(.5);opacity:1}
+  100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.4);opacity:0}
+}
+.fire-heart{
+  position:fixed;z-index:55;pointer-events:none;font-size:25px;
+  animation:fireheart 1.8s ease-out forwards
+}
+@keyframes fireheart{
+  0%{transform:translate(-50%,-50%) scale(.4);opacity:1}
+  100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.5);opacity:0}
+}
+</style>
+</head>
+<body>
+
+<div class="intro" id="intro">
+  <div style="text-align:center;padding:25px">
+    <div class="envelope">💌</div>
+    <h2>Untuk Eka Sayang</h2>
+    <p>Ada pesan kecil yang aku siapkan khusus buat kamu...</p>
+    <button class="open" onclick="openSite()">Buka untukku ❤️</button>
+  </div>
+</div>
+
+<div class="hearts" id="hearts"></div>
+<div class="container">
+  <div class="card">
+    <div class="big-heart">♥</div>
+    <div class="subtitle">Akhirnya kamu buka juga...</div>
+    <h1>Happy Birthday<br>Eka Sayang ❤️</h1>
+    <div class="date">1 Oktober 🎂</div>
+
+    <img class="photo" src="eka.jpg" alt="Eka Sayang">
+
+    <div id="countdown"></div>
+
+    <button onclick="openMessage()">💌 Buka Pesanku</button>
+
+    <div class="spotify-box">
+      <div class="spotify-title">🎵 Musik untuk Eka Sayang</div>
+      <iframe src="https://open.spotify.com/embed/track/0T5iIrXA4p5GsubkhuBIKV?utm_source=generator"
+        width="100%" height="152" frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"></iframe>
+      <div class="spotify-note">Tekan ▶ untuk mulai mendengarkan.</div>
+    </div>
+
+    <div class="message" id="message">
+      <p class="highlight">Selamat ulang tahun, Eka Sayang! 🎂❤️</p>
+      <p>
+        Hari ini bukan cuma tanggal 1 Oktober. Hari ini adalah hari ketika
+        seseorang yang cantik, manis, kadang bikin gemas, dan kadang bikin
+        aku bingung sendiri lahir ke dunia. 😆
+      </p>
+      <p>
+        Semoga semua doa dan harapan baikmu satu per satu menjadi kenyataan.
+        Semoga kamu selalu sehat, bahagia, dimudahkan dalam setiap urusan,
+        dan selalu punya alasan untuk tersenyum.
+      </p>
+      <p>
+        Maaf kalau aku belum selalu bisa menjadi yang paling sempurna.
+        Tapi aku ingin terus belajar menjadi lebih baik untuk hubungan kita.
+      </p>
+      <p>
+        Kalau nanti kamu lagi capek, ingat ya... ada seseorang yang dari jauh
+        selalu mendoakan kamu, selalu ingin melihat kamu bahagia, dan selalu
+        senang kalau kamu tersenyum.
+      </p>
+      <p class="highlight">Love you, Eka Sayang ❤️</p>
+      <p style="text-align:center">Sekarang senyum dulu... ulang tahun nggak boleh cemberut! 😘</p>
+    </div>
+
+    <div class="small">Dibuat khusus untuk Eka Sayang • 1 Oktober</div>
+  </div>
+</div>
+
+<script>
+function openSite(){
+  document.getElementById('intro').classList.add('hide');
+  setTimeout(()=>heartFirework(),450);
+}
+function openMessage(){
+  document.getElementById('message').classList.add('show');
+  heartFirework();
+  launchConfetti();
+  setTimeout(()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),250);
+}
+function makeHearts(){
+  const box=document.getElementById('hearts');
+  for(let i=0;i<28;i++){
+    const h=document.createElement('div');h.className='heart';
+    h.textContent=Math.random()>.5?'❤️':'💗';
+    h.style.left=Math.random()*100+'%';
+    h.style.animationDelay=(Math.random()*7)+'s';
+    h.style.animationDuration=(5+Math.random()*5)+'s';
+    h.style.fontSize=(16+Math.random()*22)+'px';
+    box.appendChild(h);
+  }
+}
+makeHearts();
+
+function loveBurst(x,y){
+  const symbols=['❤️','💗','💖','💕','💘','💞'];
+  for(let i=0;i<12;i++){
+    const el=document.createElement('div');el.className='love-burst';
+    el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left=x+'px';el.style.top=y+'px';
+    const a=Math.random()*Math.PI*2,d=55+Math.random()*130;
+    el.style.setProperty('--x',Math.cos(a)*d+'px');
+    el.style.setProperty('--y',Math.sin(a)*d+'px');
+    el.style.animationDelay=(Math.random()*.12)+'s';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),1500);
+  }
+}
+document.addEventListener('click',e=>{
+  if(e.target.closest('button,.music,a,iframe,.intro')) return;
+  loveBurst(e.clientX,e.clientY);
+});
+document.addEventListener('touchstart',e=>{
+  const t=e.touches[0];if(t) loveBurst(t.clientX,t.clientY);
+},{passive:true});
+
+function heartFirework(){
+  const cx=innerWidth/2,cy=innerHeight*.48;
+  for(let i=0;i<42;i++){
+    const el=document.createElement('div');el.className='fire-heart';
+    el.textContent=i%3===0?'💖':'❤️';
+    el.style.left=cx+'px';el.style.top=cy+'px';
+    const t=(i/42)*Math.PI*2;
+    const radius=110+Math.random()*130;
+    el.style.setProperty('--x',Math.cos(t)*radius+'px');
+    el.style.setProperty('--y',Math.sin(t)*radius+'px');
+    el.style.animationDelay=(Math.random()*.25)+'s';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),2200);
+  }
+}
+function launchConfetti(){
+  const c=document.createElement('canvas');c.id='confetti';
+  document.body.appendChild(c);const ctx=c.getContext('2d');
+  c.width=innerWidth;c.height=innerHeight;
+  const pieces=Array.from({length:160},()=>({
+    x:innerWidth/2,y:innerHeight*.5,vx:(Math.random()-.5)*13,
+    vy:(Math.random()-1)*14,s:4+Math.random()*7,r:Math.random()*6.28
+  }));
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    pieces.forEach(p=>{
+      p.x+=p.vx;p.vy+=.35;p.y+=p.vy;p.r+=.15;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);
+      ctx.fillStyle=['#fff','#ffd166','#ff7aa2','#9bf6ff','#caffbf'][Math.floor(Math.random()*5)];
+      ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*1.6);ctx.restore();
+    });
+    if(frame++<130)requestAnimationFrame(draw);
+    else c.remove();
+  } draw();
+}
+function updateCountdown(){
+  const now=new Date();let year=now.getFullYear();
+  let target=new Date(year,9,1,0,0,0);
+  if(now>=target)target=new Date(year+1,9,1,0,0,0);
+  const diff=target-now,d=Math.floor(diff/86400000),h=Math.floor(diff/3600000)%24,
+        m=Math.floor(diff/60000)%60,s=Math.floor(diff/1000)%60;
+  document.getElementById('countdown').textContent=
+    `Menuju 1 Oktober berikutnya: ${d} hari ${h} jam ${m} menit ${s} detik`;
+}
+updateCountdown();setInterval(updateCountdown,1000);
+</script>
+</body>
+</html>
